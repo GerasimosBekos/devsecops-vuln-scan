@@ -6,7 +6,7 @@ on:
       docker_image:
         description: 'Docker Image to scan'
         required: true
-        default: 'whyour/qinglong'
+        default: 'alpine:latest'
 
 jobs:
   scout:
