@@ -6,7 +6,7 @@ on:
       docker_image:
         description: 'Docker Image to scan'
         required: true
-        default: 'rancher/shell'
+        default: 'fluent/fluentd-aggregator'
 
 jobs:
   scout:
@@ -40,24 +40,24 @@ jobs:
           sarif-file: sca_scout.sarif
           output: sbom_scout.spdx.json
           format: spdx
-      # - name: Upload SBOM file as an artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: sbom_scout.spdx.json
-      #     path: sbom_scout.spdx.json
+      - name: Upload SBOM file as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom_scout.spdx.json
+          path: sbom_scout.spdx.json
 
-      # - name: Upload SARIF file as an artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: sca_scout.sarif
-      #     path: sca_scout.sarif
+      - name: Upload SARIF file as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca_scout.sarif
+          path: sca_scout.sarif
 
-      # # Only available on Github Enterprise or public repositories
-      # - name: Upload SARIF file
-      #   uses: github/codeql-action/upload-sarif@v3
-      #   with:
-      #     sarif_file: sca_scout.sarif
-      #     category: Security/SCA
+      # Only available on Github Enterprise or public repositories
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: sca_scout.sarif
+          category: Security/SCA
 
-      # - name: SBOM upload
-      #   uses: advanced-security/spdx-dependency-submission-action@v0.1.1
+      - name: SBOM upload
+        uses: advanced-security/spdx-dependency-submission-action@v0.1.1
