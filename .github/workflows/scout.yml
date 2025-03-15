@@ -6,7 +6,7 @@ on:
       docker_image:
         description: 'Docker Image to scan'
         required: true
-        default: 'alpine:latest'
+        default: 'nginx:latest'
 
 jobs:
   scout:
@@ -26,6 +26,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Pull the image
+        run: docker pull ${{ github.event.inputs.docker_image }}
+      
       - name: Docker Scout
         uses: docker/scout-action@v1
         with:
