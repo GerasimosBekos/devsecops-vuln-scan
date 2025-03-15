@@ -1,4 +1,4 @@
-name: Golang Scout
+name: Terraria Server Scout
 
 on:
   workflow_dispatch:
